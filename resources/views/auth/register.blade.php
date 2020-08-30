@@ -12,7 +12,7 @@
                         @csrf
 
                         {!! Form::hidden('isActiv', 1) !!}
-
+                        {!! Form::hidden('permission', 1) !!}
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -48,6 +48,19 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label">
+                            </div>
+                            <div class="col-md-6">
+                                <select name="permission">
+                                    <option value="0">brak uprawnień</option>
+                                    <option value="1">Odczyt</option>
+                                    <option value="2">Odczyt i zapis</option>
+                                    <option value="3">Super user</option>
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

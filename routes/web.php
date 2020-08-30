@@ -21,7 +21,7 @@ Route::get('/', function () {
     Route::resource('users','UserController');
     Route::auth();
     });*/
-Route::get('/create', 'UserController@create' );
+Route::get('/ab', 'UserController@create' );
 Route::post('/create', 'UserController@store' );
 Route::get('/t', 'UserController@index' );
 Auth::routes();

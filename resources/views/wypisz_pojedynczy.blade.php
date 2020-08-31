@@ -1,11 +1,13 @@
 <div class="form-group">
-    <form method = "POST" action= "/create">
+    <form method = "POST" action= "/update">
         @csrf
             @if(Session::has('bledne_haslo'))
                 <div class="alert alert-danger " style="background:red; min-height 100px; min-width:100px;max-height 300px; max-width:300px;"  role="alert">
                     {{ Session::get('bledne_haslo') }}
                 </div>
             @endif
+            {!! Form::hidden('id', $user->id ) !!}
+            {!! Form::hidden('isActiv', 0 ) !!}
             <div class="form-group">
                 <div class="col-md-4 control-label">
                     {!! Form::label('email','Email:') !!}
@@ -20,7 +22,7 @@
                     {!! Form::label('password','Haslo:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::text('password',null,['class'=>'form-control']) !!}
+                    {!! Form::password('password',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
@@ -29,7 +31,7 @@
                     {!! Form::label('password1','Powtórz hasło:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::text('password1',null,['class'=>'form-control']) !!}
+                    {!! Form::password('password1',null,['class'=>'form-control']) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -37,7 +39,8 @@
                 </div>
                 <div class="col-md-6">
                     <select name="permission" >
-                        <option value="$user->permission">@switch($user->permission)
+                        <option value={{$user->permission}}>
+                            @switch($user->permission)
                             @case(0)
                             brak uprawnień
                                 @break

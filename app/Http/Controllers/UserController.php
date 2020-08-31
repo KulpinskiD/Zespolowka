@@ -50,35 +50,53 @@ class UserController extends Controller
     }
     public function update(Request $request)
     {
+
         if($request->password==null)
         {
+            
             $user = User::findOrFail($request->id);
             $password=$user->password;
             DB::table('users')->where('id', $request->id)->update(
-                ['email' => "1@1.pl"]
+                [
+                'email' => $request->email,
+                'password'=>$password,
+                'isActiv'=>$request->isActiv,
+                'permission'=>$request->permission,
+                'created_at'=>$request->created_at,
+                'updated_at'=>$request->updated_at
+                ]
+                
             
             );
-        }
-        $password=$request->password;
-        $password1=$request->password1;
-        if($password==$password1)
-        {
-            
-            User::create([
-                'isActiv' => $request['isActiv'],
-                'permission' => $request['permission'],
-                //'name' => $data['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-            return view ('create'); 
+            return view ('t'); 
         }
         else
         {
+            $password=$request->password;
+            $password1=$request->password1;
+            if($password!=$password1)
+            {
+            $user = User::findOrFail($request->id);
             Session()->flash('bledne_haslo','Podane chasla ruznią się');
-            return view ('create');
+                return view ('wypisz_pojedynczy')->with('user', $user);
+            }
+            else
+            {
+                DB::table('users')->where('id', $request->id)->update(
+                    [
+                    'email' => $request->email,
+                    'password'=>Hash::make($request['password']),
+                    'isActiv'=>$request->isActiv,
+                    'permission'=>$request->permission,
+                    'created_at'=>$request->created_at,
+                    'updated_at'=>$request->updated_at
+                    ]
+                );
+            }
+            return view ('t');
         }
-        return view ('index');
+
+        
         
         
     }

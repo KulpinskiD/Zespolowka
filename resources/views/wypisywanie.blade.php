@@ -18,7 +18,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Form::submit($buttonText ?? '',['class'=>'btn btn-primary']) !!}
+                            <a href=" {{ action('UserController@edit', $users->id)  }}">
+                                    Edytuj
+                                </a>
                             </div>
                         </div>
                     </div>

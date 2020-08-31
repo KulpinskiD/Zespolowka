@@ -21,9 +21,16 @@ Route::get('/', function () {
     Route::resource('users','UserController');
     Route::auth();
     });*/
+    /*Route::group(['middleware' =>['web']],function(){
+        Route:resource('users','UserController');
+
+
+    });*/
+Route::get('/t', 'UserController@index' );
 Route::get('/ab', 'UserController@create' );
 Route::post('/create', 'UserController@store' );
-Route::get('/t', 'UserController@index' );
+Route::get('/{user}/edit', 'UserController@edit' );
+Route::post('/update', 'UserController@update' );
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

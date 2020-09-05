@@ -27,6 +27,15 @@ Route::get('/', function () {
 
     });*/
 Route::get('/t', 'UserController@index' );
+Route::get('/wypisz_firmy', 'CompaniesController@index' );
+Route::get('/aa', 'CompaniesController@create' );
+Route::post('/create_company', 'CompaniesController@store' );
+Route::post('/update_company', 'CompaniesController@update' );
+Route::get('/{user}/edit_firmy', 'CompaniesController@edit' );
+
+
+
+
 Route::get('/ab', 'UserController@create' );
 Route::post('/create', 'UserController@store' );
 Route::get('/{user}/edit', 'UserController@edit' );

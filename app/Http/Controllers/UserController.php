@@ -11,20 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /*public function __construct()
-    {
-        
-        $this->middleware('auth',['only'=>'create']);
-    }*/
-    /*protected function create(array $data)
-    {
-        return User::create([
-            'isActiv' => $data['isActiv'],
-            //'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }*/
     public function index()
     {
         $user = User::latest()->get();

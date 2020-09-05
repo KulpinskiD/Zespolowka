@@ -16,7 +16,7 @@
                     {!! Form::email('email',$user->email,['class'=>'form-control']) !!}
                 </div>
             </div>
-            <h3>Pola do zmiany chasła opcionalne jesli nie zostanie uzupełnine chasło zostanie bez zmian</h3>
+            <h3>Pola do zmiany hasła opcjonalne jesli nie zostanie uzupełnine hasło zostanie bez zmian</h3>
             <div class="form-group">
                 <div class="col-md-4 control-label">
                     {!! Form::label('password','Haslo:') !!}

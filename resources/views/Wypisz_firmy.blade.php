@@ -3,10 +3,10 @@
         <link rel="stylesheet" href="{{ URL::asset('style.css')}}">
     </header>
     <body>
-        <div class="row">
+        <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
+        <div class="row przerwa">
 
             @foreach($companyes as $company)
-
                 <!-- Single video -->
                 <div class="col-xs-12 col-md-6 col-lg-4 kotener">
                     <div class="card">
@@ -20,6 +20,7 @@
                             <h3>Czym się zajmuje</h3>
                             <p>{{ ($company->activity) }}</p>
                         </div>
+                        @if($permission>=2)
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href=" {{ action('CompaniesController@edit', $company->id)  }}">
@@ -27,6 +28,7 @@
                                 </a>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
 

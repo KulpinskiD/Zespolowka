@@ -3,7 +3,8 @@
         <link rel="stylesheet" href="{{ URL::asset('style.css')}}">
     </header>
     <body>
-        <div class="row">
+        <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
+        <div class="row przerwa">
 
             @foreach($user as $users)
 

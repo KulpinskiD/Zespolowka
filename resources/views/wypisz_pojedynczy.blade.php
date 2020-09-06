@@ -1,3 +1,9 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="{{ URL::asset('style.css')}}">
+    </header>
+    <body>
+        <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
 <div class="form-group">
     <form method = "POST" action= "/update">
         @csrf
@@ -81,4 +87,4 @@
             </div>
         
 </form>
-
+</body>

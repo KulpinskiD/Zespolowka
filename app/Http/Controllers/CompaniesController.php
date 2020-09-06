@@ -11,12 +11,23 @@ class CompaniesController extends Controller
 {
     public function index()
     {
-        $companyes = Company::latest()->get();
-    	return view('Wypisz_firmy')->with('companyes', $companyes);
+        if(auth()->user()->permission>=1)
+        {
+            $permission=auth()->user()->permission;
+            $companyes = Company::latest()->get();
+            return view('Wypisz_firmy',compact('companyes', 'permission'));
+            //return view('Wypisz_firmy')->with('companyes', $companyes);
+        }
+        else
+        {
+
+            Session()->flash('permission_erorr ','masz za małe uprawnienia');
+            return view ('home');
+        }
     }
     public function create()
     {
-        if(auth()->user()->permission>=3)
+        if(auth()->user()->permission>=2)
         {
         return view ('create_company');
         }
@@ -24,24 +35,43 @@ class CompaniesController extends Controller
         {
 
             Session()->flash('permission_erorr ','masz za małe uprawnienia');
-            return view ('welcome');
+            return view ('home');
         }
     }
     public function store(Request $request)
     {
-                Company::create([
-                    'name' => $request['name'],
-                    'nip' => $request['nip'],
-                    'adress' => $request['adress'],
-                    'city' => $request['city'],
-                    'activity' => $request['activity'],
-                ]);
-                return view ('create_company');   
+        if(auth()->user()->permission>=2)
+        {
+            Company::create([
+                'name' => $request['name'],
+                'nip' => $request['nip'],
+                'adress' => $request['adress'],
+                'city' => $request['city'],
+                'activity' => $request['activity'],
+            ]);
+            return view ('create_company');  
+        }
+        else
+        {
+
+            Session()->flash('permission_erorr ','masz za małe uprawnienia');
+            return view ('home');
+        }
+                 
     }
     public function edit($id)
     {
-        $companyes = Company::findOrFail($id);
-    	return view('edit_company')->with('companyes', $companyes);
+        if(auth()->user()->permission>=2)
+        {
+            $companyes = Company::findOrFail($id);
+            return view('edit_company')->with('companyes', $companyes);
+        }
+        else
+        {
+
+            Session()->flash('permission_erorr ','masz za małe uprawnienia');
+            return view ('home');
+        }
     }
     public function update(Request $request)
     {
@@ -58,8 +88,9 @@ class CompaniesController extends Controller
                 
             
             );
+            $permission=auth()->user()->permission;
             $companyes = Company::latest()->get();
-    	    return view('Wypisz_firmy')->with('companyes', $companyes);
+            return view('Wypisz_firmy',compact('companyes', 'permission'));
     }
 
 }

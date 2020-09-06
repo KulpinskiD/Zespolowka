@@ -26,20 +26,24 @@ Route::get('/', function () {
 
 
     });*/
-Route::get('/t', 'UserController@index' );
+
 Route::get('/wypisz_firmy', 'CompaniesController@index' );
-Route::get('/aa', 'CompaniesController@create' );
+Route::get('/check_firmy', 'CompaniesController@create' );
 Route::post('/create_company', 'CompaniesController@store' );
 Route::post('/update_company', 'CompaniesController@update' );
 Route::get('/{user}/edit_firmy', 'CompaniesController@edit' );
 
 
 
-
-Route::get('/ab', 'UserController@create' );
+Route::get('/wypisywanie', 'UserController@index' );
+Route::get('/check_create', 'UserController@create' );
 Route::post('/create', 'UserController@store' );
 Route::get('/{user}/edit', 'UserController@edit' );
 Route::post('/update', 'UserController@update' );
+
+Route::get('/check_writings', 'WritingsController@create' );
+Route::post('/create_writings', 'WritingsController@store' );
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

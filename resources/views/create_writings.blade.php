@@ -5,54 +5,44 @@
 <body>
 <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
 <a class="przyciski_powrotu" href="/wypisywanie">Powrót do listy wszystkich użytkowników</a>
-    <form method = "POST" action= "/create" >
+    <form method = "POST" action= "/create_writings" >
         @csrf
         <div class="przerwa">
-            @if(Session::has('bledne_haslo'))
-                <div class="alert alert-danger " style="background:red; min-height 100px; min-width:100px;max-height 300px; max-width:300px;"  role="alert">
-                    {{ Session::get('bledne_haslo') }}
-                </div>
-            @endif
-            {!! Form::hidden('isActiv', 1) !!}
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('email','Email:') !!}
+                    {!! Form::label('title','Tytuł:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::email('email',null,['class'=>'form-control']) !!}
+                    {!! Form::text('title',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('password','Haslo:') !!}
+                    {!! Form::label('description','Opis:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::password('password',null,['class'=>'form-control']) !!}
+                    {!! Form::text('description',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('password1','powtórz hasło:') !!}
+                    {!! Form::label('number_of_facture','Numer pisma:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::password('password1',null,['class'=>'form-control']) !!}
+                    {!! Form::Text('number_of_facture',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
-
-            
             <div class="form-group">
                 <div class="col-md-4 control-label">
+                    {!! Form::label('Company_list','Lista_firm:') !!}
                 </div>
+                
                 <div class="col-md-6">
-                    <select name="permission">
-                        <option value="0">brak uprawnień</option>
-                        <option value="1">Odczyt</option>
-                        <option value="2">Odczyt i zapis</option>
-                        <option value="3">Super user</option>
-                    </select>
+                    {!! Form::select('Company_list',$companyes,null,['class'=>'form-control']) !!}
+
                 </div>
             </div>
 

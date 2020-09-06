@@ -1,7 +1,13 @@
-
+<html>
+    <header>
+        <link rel="stylesheet" href="{{ URL::asset('style.css')}}">
+    </header>
+<body>
+<a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
+<a class="przyciski_powrotu" href="/wypisz_firmy">Powrót do listy wszystkich firm</a>
     <form method = "POST" action= "/create_company">
         @csrf
-            <div class="form-group">
+            <div class="form-group przerwa">
                 <div class="col-md-4 control-label">
                     {!! Form::label('name','Nazwa:') !!}
                 </div>
@@ -52,4 +58,5 @@
             </div>
         
 </form>
+</body>
 

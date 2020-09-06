@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWritingsTable extends Migration
+class CreateWritingsOuterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateWritingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('writings', function (Blueprint $table) {
+        Schema::create('writings_outer', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_companies')->unsigned();
             $table->string('title');
             $table->string('description');
             $table->string('from');
-            $table->string('to');
             $table->string('number_of_facture');
+            $table->timestamps();
             $table->foreign('id_companies')->references('id')->on('companies')->onDelete('cascade');
-            
         });
     }
 
@@ -33,6 +32,6 @@ class CreateWritingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('writings');
+        Schema::dropIfExists('writings_outer');
     }
 }

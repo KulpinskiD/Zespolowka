@@ -13,13 +13,32 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::latest()->get();
-    	return view('wypisywanie')->with('user', $user);
+        if(auth()->user()->permission>=3)
+        {
+            $user = User::latest()->get();
+            return view('wypisywanie')->with('user', $user);
+        }
+        else
+        {
+
+            Session()->flash('permission_erorr ','masz za małe uprawnienia');
+            return view ('home');
+        }
     }
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-    	return view('wypisz_pojedynczy')->with('user', $user);
+        if(auth()->user()->permission>=3)
+        {
+            $user = User::findOrFail($id);
+            return view('wypisz_pojedynczy')->with('user', $user);
+        }
+        else
+        {
+
+            Session()->flash('permission_erorr ','masz za małe uprawnienia');
+            return view ('home');
+        }
+        
     }
     public function create()
     {
@@ -31,7 +50,7 @@ class UserController extends Controller
         {
 
             Session()->flash('permission_erorr ','masz za małe uprawnienia');
-            return view ('welcome');
+            return view ('home');
         }
     }
     public function update(Request $request)
@@ -102,7 +121,6 @@ class UserController extends Controller
                 User::create([
                     'isActiv' => $request['isActiv'],
                     'permission' => $request['permission'],
-                    //'name' => $data['name'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
                 ]);

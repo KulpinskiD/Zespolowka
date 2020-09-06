@@ -41,8 +41,11 @@ Route::post('/create', 'UserController@store' );
 Route::get('/{user}/edit', 'UserController@edit' );
 Route::post('/update', 'UserController@update' );
 
+Route::get('/writings_outers', 'WritingsController@index' );
 Route::get('/check_writings', 'WritingsController@create' );
 Route::post('/create_writings', 'WritingsController@store' );
+Route::get('/{user}/edit_outers', 'WritingsController@edit' );
+Route::post('/update_outers', 'WritingsController@update' );
 
 Auth::routes();
 

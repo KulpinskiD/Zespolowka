@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Name extends Model
 {
     protected $fillable = [
-        'id_users',
-        'id_section',
+        'id', 
+        'name',
 
     ];
 }

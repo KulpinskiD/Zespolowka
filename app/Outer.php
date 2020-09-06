@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Writings_inner extends Model
+class Outer extends Model
 {
-    protected $fillable = [
+    protected $fillable=[
+        'id_companies',
         'title',
         'description',
         'from',
-        'to',
+        'number_of_facture',
+
+
     ];
 }

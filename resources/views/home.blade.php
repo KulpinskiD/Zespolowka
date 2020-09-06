@@ -39,7 +39,7 @@
                 @if($user->permission>=1)
                 
                 <a class="przyciski" href="/wypisz_firmy">Wypisz wszystkie firmy </a>
-                <a class="przyciski" href="/">Wypisz wszystkie pisma</a>
+                <a class="przyciski" href="/writings_outers">Wypisz wszystkie pisma zewneczne</a>
                 
                 @endif
 

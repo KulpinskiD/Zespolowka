@@ -78,7 +78,16 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-md-4 control-label">
+                    {!! Form::label('section','Lista_firm:') !!}
+                </div>
+                
+                <div class="col-md-6">
+                    {!! Form::select('section',$sections,null,['class'=>'form-control']) !!}
 
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">

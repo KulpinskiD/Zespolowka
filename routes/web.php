@@ -45,7 +45,9 @@ Route::get('/writings_outers', 'WritingsController@index' );
 Route::get('/check_writings', 'WritingsController@create' );
 Route::post('/create_writings', 'WritingsController@store' );
 Route::get('/{user}/edit_outers', 'WritingsController@edit' );
-Route::post('/update_outers', 'WritingsController@update' );
+Route::post('/update_outers', 'WritingsController@update' ); 
+
+Route::get('/chcek_setions', 'InnerController@chcek_setions' );
 
 Auth::routes();
 

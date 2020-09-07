@@ -43,7 +43,7 @@
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('section','Lista_firm:') !!}
+                    {!! Form::label('section','Nazwa działu:') !!}
                 </div>
                 
                 <div class="col-md-6">
@@ -57,10 +57,11 @@
                 </div>
                 <div class="col-md-6">
                     <select name="permission">
-                        <option value="0">brak uprawnień</option>
-                        <option value="1">Odczyt</option>
-                        <option value="2">Odczyt i zapis</option>
-                        <option value="3">Super user</option>
+                        <option value="Wychodzące_zapis">Wychodzące zapis</option>
+                        <option value="Wychodzące_odczyt">Wychodzące odczyt</option>
+                        <option value="Przychodzące_zapis">Przychodzące zapis</option>
+                        <option value="Przychodzące_odczyt">Przychodzące odczyt</option>
+                        <option value="Super_user">Super user</option>
                     </select>
                 </div>
             </div>

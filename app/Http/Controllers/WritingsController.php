@@ -17,7 +17,7 @@ class WritingsController extends Controller
             if(auth()->user()->permission>=1)
             { 
                 $permisin=auth()->user()->permission;
-                $name_company=Name::latest()->get();
+                $name_company=Company::latest()->get();
                 $writings = Outer::latest()->get();
                 return view('wypisz_pisma_zewneczne',compact('name_company','writings','permisin'));
             }

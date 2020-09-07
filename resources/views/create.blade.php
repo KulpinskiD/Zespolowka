@@ -61,7 +61,7 @@
                         <option value="Wychodzące_odczyt">Wychodzące odczyt</option>
                         <option value="Przychodzące_zapis">Przychodzące zapis</option>
                         <option value="Przychodzące_odczyt">Przychodzące odczyt</option>
-                        <option value="Super_user">Super user</option>
+                        <option value="Super_user">Superuser</option>
                     </select>
                 </div>
             </div>

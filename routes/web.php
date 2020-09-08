@@ -45,7 +45,15 @@ Route::get('/writings_outers', 'WritingsController@index' );
 Route::get('/check_writings', 'WritingsController@create' );
 Route::post('/create_writings', 'WritingsController@store' );
 Route::get('/{user}/edit_outers', 'WritingsController@edit' );
+Route::get('/{user}/preview_outers', 'WritingsController@preview' );
 Route::post('/update_outers', 'WritingsController@update' ); 
+
+Route::get('/writings_inner', 'InnerController@index' );
+Route::get('/check_writings_inner', 'InnerController@create' );
+Route::post('/create_writings_inner', 'InnerController@store' );
+Route::get('/{user}/edit_outers_inner', 'InnerController@edit' );
+Route::get('/{user}/preview_outers_inner', 'InnerController@preview' );
+Route::post('/update_inner', 'InnerController@update' ); 
 
 Route::get('/chcek_setions', 'InnerController@chcek_setions' );
 

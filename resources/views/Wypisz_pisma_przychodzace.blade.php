@@ -6,8 +6,8 @@
         <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
         {!! Form::hidden($dodawanie=0) !!}
         @foreach ($permisions as $permision)
-        @if (($permision=="Super user" or $permision=="Wychodzące zapis") and $dodawanie==0)
-        <a class="przyciski_powrotu" href="/check_writings">Dodaj pismo</a>
+        @if (($permision=="Super user" or $permision=="Przychodzące zapis") and $dodawanie==0)
+        <a class="przyciski_powrotu" href="/check_writings_inner">Dodaj pismo</a>
         {!! Form::hidden($dodawanie++) !!}
         @endif
         @endforeach
@@ -36,10 +36,10 @@
 
                         {!! Form::hidden($edycja=0) !!}
                         @foreach ($permisions as $permision)
-                        @if (($permision=="Super user" or $permision=="Wychodzące zapis")&&$edycja==0) 
+                        @if (($permision=="Super user" or $permision=="Przychodzące zapis")&&$edycja==0) 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <a href=" {{ action('WritingsController@edit', $writing->id)  }}">
+                            <a href=" {{ action('InnerController@edit', $writing->id)  }}">
                                 {!! Form::hidden($edycja++) !!}
                                     Edytuj
                                 </a>
@@ -49,7 +49,7 @@
                         @endforeach
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <a href=" {{ action('WritingsController@preview', $writing->id)  }}">
+                            <a href=" {{ action('InnerController@preview', $writing->id)  }}">
                                     Podgląd
                                 </a>
                             </div>

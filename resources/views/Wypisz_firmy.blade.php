@@ -4,6 +4,7 @@
     </header>
     <body>
         <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
+        <a class="przyciski_powrotu" href="/check_firmy">Dodaj firme</a>
         <div class="row przerwa">
 
             @foreach($companyes as $company)
@@ -20,7 +21,6 @@
                             <h3>Czym się zajmuje</h3>
                             <p>{{ ($company->activity) }}</p>
                         </div>
-                        @if($permission>=2)
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href=" {{ action('CompaniesController@edit', $company->id)  }}">
@@ -28,7 +28,6 @@
                                 </a>
                             </div>
                         </div>
-                        @endif
                     </div>
                 </div>
 

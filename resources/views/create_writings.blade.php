@@ -4,7 +4,7 @@
     </header>
 <body>
 <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
-<a class="przyciski_powrotu" href="/wypisywanie">Powrót do listy wszystkich użytkowników</a>
+<a class="przyciski_powrotu" href="/writings_outers">Powrót do listy pism</a>
     <form method = "POST" action= "/create_writings" >
         @csrf
         <div class="przerwa">
@@ -37,7 +37,7 @@
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('Company_list','Lista_firm:') !!}
+                    {!! Form::label('Company_list','Lista odbiorców:') !!}
                 </div>
                 
                 <div class="col-md-6">

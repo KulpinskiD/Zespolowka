@@ -4,59 +4,54 @@
     </header>
 <body>
 <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
-<a class="przyciski_powrotu" href="/wypisz_firmy">Powrót do listy wszystkich firm</a>
-    <form method = "POST" action= "/create_company">
+<a class="przyciski_powrotu" href="/writings_inner">Powrót do listy pism</a>
+    <form method = "POST" action= "/create_writings_inner" >
         @csrf
-        {!! Form::hidden('nip', "aa " ) !!}
-            <div class="form-group przerwa">
+        <div class="przerwa">
+            <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('name','Nazwa:') !!}
+                    {!! Form::label('title','Tytuł:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::text('name',null,['class'=>'form-control']) !!}
+                    {!! Form::text('title',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('nip','Nip:') !!}
+                    {!! Form::label('description','Opis:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::text('nip',null,['class'=>'form-control']) !!}
+                    {!! Form::text('description',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('city','Miasto') !!}
+                    {!! Form::label('number_of_facture','Numer pisma:') !!}
                 </div>
                 <div class="col-md-6">
-                    {!! Form::text('city',null,['class'=>'form-control']) !!}
+                    {!! Form::Text('number_of_facture',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 control-label">
-                    {!! Form::label('adress','Adress') !!}
+                    {!! Form::label('Company_list','Lista odbiorców:') !!}
                 </div>
+                
                 <div class="col-md-6">
-                    {!! Form::text('adress',null,['class'=>'form-control']) !!}
+                    {!! Form::select('Company_list',$companyes,null,['class'=>'form-control']) !!}
+
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-4 control-label">
-                    {!! Form::label('activity','Czym się firma zajmuje') !!}
-                </div>
-                <div class="col-md-6">
-                    {!! Form::text('activity',null,['class'=>'form-control']) !!}
-                </div>
-            </div>
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     {!! Form::submit("utwórz",['class'=>'form-btn btn-primary']) !!}
                 </div>
             </div>
+        </div>
         
 </form>
 </body>

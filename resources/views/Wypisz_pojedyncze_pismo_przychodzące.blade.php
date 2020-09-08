@@ -4,9 +4,9 @@
     </header>
     <body>
         <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
-        <a class="przyciski_powrotu" href="/writings_outers">Powrót do listy pism</a>
+        <a class="przyciski_powrotu" href="/writings_inner">Powrót do listy pism</a>
 <div class="form-group">
-    <form method = "POST" action= "/update_outers">
+    <form method = "POST" action= "/update_inner">
         @csrf
         
         {!! Form::hidden('id', $writing->id) !!}

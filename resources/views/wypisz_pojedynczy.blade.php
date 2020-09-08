@@ -4,6 +4,8 @@
     </header>
     <body>
         <a class="przyciski_powrotu" href="/home">Powrót do panelu sterowania</a>
+        <a class="przyciski_powrotu" href="/wypisywanie">Powrót do wyboru użytkownika</a>
+        
 <div class="form-group">
     <form method = "POST" action= "/update">
         @csrf
@@ -44,28 +46,12 @@
                 <div class="col-md-4 control-label">
                 </div>
                 <div class="col-md-6">
-                    <select name="permission" >
-                        <option value={{$user->permission}}>
-                            @switch($user->permission)
-                            @case(0)
-                            brak uprawnień
-                                @break
-                            @case(1)
-                            Odczyt
-                                @break
-                                @case(2)
-                            Odczyt i zapis
-                                @break
-                                @case(3)
-                            Super user
-                                @break
-                            @default
-                                
-                        @endswitch</option>
-                        <option value="0">brak uprawnień</option>
-                        <option value="1">Odczyt</option>
-                        <option value="2">Odczyt i zapis</option>
-                        <option value="3">Super user</option>
+                    <select name="permission []" multiple="multiple" id="permission">
+                        <option value="Wychodzące zapis">Wychodzące zapis</option>
+                        <option value="Wychodzące odczyt">Wychodzące odczyt</option>
+                        <option value="Przychodzące zapis">Przychodzące zapis</option>
+                        <option value="Przychodzące odczyt">Przychodzące odczyt</option>
+                        <option value="Super user">Super user</option>
                     </select>
                 </div>
             </div>

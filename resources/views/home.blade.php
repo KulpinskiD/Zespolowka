@@ -18,30 +18,34 @@
                     document.getElementById('logout-form').submit();">
                     {{ __('Wyloguj') }}
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
                 @endauth
+                {!! Form::hidden($admin=0) !!}
+                {!! Form::hidden($przychodzace=0) !!}
+                {!! Form::hidden($wewneczne=0) !!}
+                @foreach ($permisions as $permision)
 
-                @if($user->permission>=3)
-                
-                <a class="przyciski" href="/check_create">Dodaj użytkownika</a>
-                <a class="przyciski" href="/wypisywanie">Wypisz użytkownikow do edycji</a>
+                    @if($permision=="Super user" and $admin==0)
+                    <a class="przyciski" href="/wypisywanie">Wypisz użytkowników</a>
+                    <a class="przyciski" href="/wypisz_firmy">Wypisz wszystkie firmy </a>
+                    {{ $admin++ }}
+                    
+                    @endif
+                    @if(($permision=="Super user" or $permision=="Przychodzące zapis" or $permision=="Przychodzące odczyt") and $przychodzace==0 )
+                        
+                    <a class="przyciski" href="/writings_inner">Pisma Przychodzące </a>
+                    {!! Form::hidden($przychodzace++) !!}
+                    
+                    
+                    @endif
+                    @if(($permision=="Super user" or $permision=="Wychodzące odczyt" or $permision=="Wychodzące zapis") and $wewneczne==0)
+                    <a class="przyciski" href="/writings_outers">Pisma Wychodzące </a>
+                    {!! Form::hidden($wewneczne++) !!}
                 
                 @endif
-                @if($user->permission>=2)
-                
-                <a class="przyciski" href="/check_firmy">Dodaj firme</a>
-                <a class="przyciski" href="/check_writings">Dodaj pismo</a>
-                
-                @endif
-                @if($user->permission>=1)
-                <a class="przyciski" href="/chcek_setions">Wybierz sekcje do wysłania pisma </a>
-                <a class="przyciski" href="/wypisz_firmy">Wypisz wszystkie firmy </a>
-                <a class="przyciski" href="/writings_outers">Wypisz wszystkie pisma zewneczne</a>
-                
-                @endif
+                @endforeach
 
             </div>
         </div>

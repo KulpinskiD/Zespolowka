@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Permission;
+
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,6 +28,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('home')->with('user', $user);
+        $uprawnienia=Permission::where('id_user', $user->id)->get();
+        $permisions = collect();
+        foreach($uprawnienia as $uprawnienie)
+        {
+            $permisions->add($uprawnienie->permissions);
+        }
+        return view('home')->with('permisions', $permisions);
     }
 }

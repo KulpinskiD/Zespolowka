@@ -7,6 +7,7 @@ use App\User;
 use App\Name;
 use App\Section;
 use Auth;
+use App\Permission;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -15,32 +16,48 @@ class UserController extends Controller
 {
     public function index()
     {
-        if(auth()->user()->permission>=3)
+        $users_auth = auth()->user();
+        $uprawnienia=Permission::where('id_user', $users_auth->id)->get();
+        $permisions = collect();
+        foreach($uprawnienia as $uprawnienie)
         {
-            $user = User::latest()->get();
-            return view('wypisywanie')->with('user', $user);
+            $permisions->add($uprawnienie->permissions);
         }
-        else
+        foreach($permisions as $permision)
         {
-
+        if($permision=="Super user")
+        {
+            $users = User::latest()->get();
+            $permisions_user = Permission::latest()->get();
+            return view('wypisywanie',compact('permisions_user','users'));
+        }
+        }
+        
+        
             Session()->flash('permission_erorr ','masz za małe uprawnienia');
-            return view ('home');
-        }
+            return view('home')->with('permisions', $permisions);
+        
     }
     public function edit($id)
     {
-        if(auth()->user()->permission>=3)
+        $users_auth = auth()->user();
+        $uprawnienia=Permission::where('id_user', $users_auth->id)->get();
+        $permisions = collect();
+        foreach($uprawnienia as $uprawnienie)
+        {
+            $permisions->add($uprawnienie->permissions);
+        }
+        foreach($permisions as $permision)
+        {
+        if($permision=="Super user")
         {
             $sections = Name::pluck('name');
             $user = User::findOrFail($id);
             return view('wypisz_pojedynczy',compact('user','sections'));
         }
-        else
-        {
-
-            Session()->flash('permission_erorr ','masz za małe uprawnienia');
-            return view ('home');
         }
+        Session()->flash('permission_erorr ','masz za małe uprawnienia');
+        return view('home')->with('permisions', $permisions);
         
     }
     public function create()
@@ -70,7 +87,6 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password'=>$password,
                 'isActiv'=>$request->isActiv,
-                'permission'=>$request->permission,
                 'created_at'=>$request->created_at,
                 'updated_at'=>$request->updated_at
                 ]
@@ -83,8 +99,17 @@ class UserController extends Controller
                     [
                     'id_section' => $number_section,
                 ]);
-                $user = User::latest()->get();
-                return view('wypisywanie')->with('user', $user);
+                DB::table('permissions')->where('id_user', $request->id)->delete();
+                foreach($request->permission_ as $permission)
+                {
+                    Permission::create([
+                        'id_user' => $request->id,
+                        'permissions' => $permission,
+                    ]);
+                }
+                $users = User::latest()->get();
+                $permisions_user = Permission::latest()->get();
+                return view('wypisywanie',compact('permisions_user','users'));
         }
         else
         {
@@ -104,7 +129,6 @@ class UserController extends Controller
                     'email' => $request->email,
                     'password'=>Hash::make($request['password']),
                     'isActiv'=>$request->isActiv,
-                    'permission'=>$request->permission,
                     'created_at'=>$request->created_at,
                     'updated_at'=>$request->updated_at
                     ]
@@ -115,9 +139,19 @@ class UserController extends Controller
                     [
                     'id_section' => $number_section
                 ]);
+                DB::table('permissions')->where('id_user', $request->id)->delete();
+                foreach($request->permission_ as $permission)
+                {
+                    Permission::create([
+                        'id_user' => $request->id,
+                        'permissions' => $permission,
+                    ]);
+                }
+                
             }
-            $user = User::latest()->get();
-            return view('wypisywanie')->with('user', $user);
+            $users = User::latest()->get();
+                $permisions_user = Permission::latest()->get();
+                return view('wypisywanie',compact('permisions_user','users'));
         }
 
         
@@ -135,13 +169,11 @@ class UserController extends Controller
             $sections = Name::pluck('name');
             $password=$request->password;
             $password1=$request->password1;
-
             if($password==$password1)
             {
-                
                 User::create([
                     'isActiv' => $request['isActiv'],
-                    'permission' => $request['permission'],
+
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
                 ]);
@@ -154,6 +186,13 @@ class UserController extends Controller
                     'id_section' => $number_section,
                     'id_users' => $test,
                 ]);
+                foreach($request->permission_ as $permission)
+                {
+                Permission::create([
+                    'id_user' => $test,
+                    'permissions' => $permission,
+                ]);
+                }
                 return view ('create')->with('section', $sections); 
             }
             else

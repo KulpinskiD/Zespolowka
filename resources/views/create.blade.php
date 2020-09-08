@@ -8,9 +8,9 @@
     <form method = "POST" action= "/create" >
         @csrf
         <div class="przerwa">
-            @if(Session::has('bledne_haslo'))
-                <div class="alert alert-danger " style="background:red; min-height 100px; min-width:100px;max-height 300px; max-width:300px;"  role="alert">
-                    {{ Session::get('bledne_haslo') }}
+                @if(Session::has('bledne_haslo'))
+                    <div class="alert alert-danger " style="background:red; min-height 100px; min-width:100px;max-height 300px; max-width:300px;"  role="alert">
+                {{ Session::get('bledne_haslo') }}
                 </div>
             @endif
             {!! Form::hidden('isActiv', 1) !!}
@@ -56,12 +56,12 @@
                 <div class="col-md-4 control-label">
                 </div>
                 <div class="col-md-6">
-                    <select name="permission">
-                        <option value="Wychodzące_zapis">Wychodzące zapis</option>
-                        <option value="Wychodzące_odczyt">Wychodzące odczyt</option>
-                        <option value="Przychodzące_zapis">Przychodzące zapis</option>
-                        <option value="Przychodzące_odczyt">Przychodzące odczyt</option>
-                        <option value="Super_user">Superuser</option>
+                    <select name="permission []" multiple="multiple" id="permission">
+                        <option value="Wychodzące zapis">Wychodzące zapis</option>
+                        <option value="Wychodzące odczyt">Wychodzące odczyt</option>
+                        <option value="Przychodzące zapis">Przychodzące zapis</option>
+                        <option value="Przychodzące odczyt">Przychodzące odczyt</option>
+                        <option value="Super user">Super user</option>
                     </select>
                 </div>
             </div>

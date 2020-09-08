@@ -15,10 +15,12 @@ class CreateWritingsInnerTable extends Migration
     {
         Schema::create('writings_inner', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_companies')->unsigned();
             $table->string('title');
             $table->string('description');
             $table->string('from');
-            $table->string('to');
+            $table->string('number_of_facture');
+            $table->foreign('id_companies')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }
